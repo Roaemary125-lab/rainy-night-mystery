@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>雨夜迷局</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div class="rain-container">
+        <div class="rain"></div>
+    </div>
+    
+    <div class="game-wrapper">
+        <header class="game-header">
+            <h1>雨夜迷局</h1>
+            <p class="subtitle">悬疑推理游戏</p>
+            <div class="header-actions">
+                <button id="saveBtn" class="action-btn">存档</button>
+                <button id="loadBtn" class="action-btn">读档</button>
+                <button id="notebookBtn" class="action-btn">侦探笔记</button>
+            </div>
+        </header>
+
+        <div class="game-container">
+            <aside class="sidebar">
+                <div class="evidence-panel">
+                    <h3>证据</h3>
+                    <ul id="evidenceList" class="evidence-list">
+                        <li class="empty">尚未收集证据</li>
+                    </ul>
+                </div>
+                
+                <div class="characters-panel">
+                    <h3>嫌疑人</h3>
+                    <ul id="characterList" class="character-list">
+                        <li class="empty">尚未发现嫌疑人</li>
+                    </ul>
+                </div>
+            </aside>
+
+            <main class="main-content">
+                <div class="scene-container">
+                    <div id="sceneImage" class="scene-image"></div>
+                    <div id="sceneText" class="scene-text">
+                        加载中...
+                    </div>
+                </div>
+
+                <div id="choices" class="choices-container">
+                    <!-- Choices will be dynamically inserted here -->
+                </div>
+            </main>
+        </div>
+
+        <!-- Notebook Modal -->
+        <div id="notebookModal" class="modal">
+            <div class="modal-content">
+                <span class="close">&times;</span>
+                <h2>侦探笔记</h2>
+                <div class="notebook-tabs">
+                    <button class="tab-btn active" data-tab="clues">线索</button>
+                    <button class="tab-btn" data-tab="suspects">嫌疑人</button>
+                    <button class="tab-btn" data-tab="deductions">推理</button>
+                </div>
+                <div id="notebookContent" class="notebook-content">
+                    <!-- Content will be dynamically inserted -->
+                </div>
+            </div>
+        </div>
+
+        <!-- Character Detail Modal -->
+        <div id="characterModal" class="modal">
+            <div class="modal-content">
+                <span class="close">&times;</span>
+                <div id="characterDetail"></div>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/characters.js"></script>
+    <script src="js/story.js"></script>
+    <script src="js/game.js"></script>
+</body>
+</html>

@@ -1,0 +1,591 @@
+/* Rainy Night Mystery - Game Styles */
+
+:root {
+    --bg-dark: #0a0a0f;
+    --bg-panel: #151520;
+    --bg-card: #1e1e2e;
+    --text-primary: #e0e0e0;
+    --text-secondary: #888899;
+    --accent-blue: #4a90d9;
+    --accent-gold: #d4a853;
+    --accent-red: #c94f4f;
+    --border-color: #2a2a3a;
+    --rain-color: rgba(174, 194, 224, 0.3);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Georgia', 'Times New Roman', serif;
+    background-color: var(--bg-dark);
+    color: var(--text-primary);
+    min-height: 100vh;
+    overflow-x: hidden;
+    line-height: 1.6;
+}
+
+/* Rain Effect */
+.rain-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 0;
+    overflow: hidden;
+}
+
+.rain {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: repeating-linear-gradient(
+        transparent,
+        transparent 2px,
+        var(--rain-color) 2px,
+        var(--rain-color) 4px
+    );
+    animation: rain 0.5s linear infinite;
+    opacity: 0.3;
+}
+
+@keyframes rain {
+    0% {
+        transform: translateY(-100%);
+    }
+    100% {
+        transform: translateY(0);
+    }
+}
+
+/* Game Wrapper */
+.game-wrapper {
+    position: relative;
+    z-index: 1;
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 20px;
+    min-height: 100vh;
+}
+
+/* Header */
+.game-header {
+    text-align: center;
+    padding: 20px 0;
+    border-bottom: 2px solid var(--border-color);
+    margin-bottom: 20px;
+    position: relative;
+}
+
+.game-header h1 {
+    font-size: 2.5rem;
+    color: var(--accent-gold);
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    letter-spacing: 0.2em;
+}
+
+.subtitle {
+    color: var(--text-secondary);
+    font-style: italic;
+    margin-top: 5px;
+    font-size: 1rem;
+}
+
+.header-actions {
+    position: absolute;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    display: flex;
+    gap: 10px;
+}
+
+.action-btn {
+    background: var(--bg-card);
+    border: 1px solid var(--border-color);
+    color: var(--text-primary);
+    padding: 8px 16px;
+    cursor: pointer;
+    border-radius: 4px;
+    font-size: 0.9rem;
+    transition: all 0.3s ease;
+}
+
+.action-btn:hover {
+    background: var(--accent-blue);
+    border-color: var(--accent-blue);
+}
+
+/* Game Container */
+.game-container {
+    display: flex;
+    gap: 20px;
+    height: calc(100vh - 150px);
+}
+
+/* Sidebar */
+.sidebar {
+    width: 280px;
+    flex-shrink: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.evidence-panel,
+.characters-panel {
+    background: var(--bg-panel);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    padding: 15px;
+    flex: 1;
+    overflow-y: auto;
+}
+
+.evidence-panel h3,
+.characters-panel h3 {
+    color: var(--accent-gold);
+    margin-bottom: 15px;
+    font-size: 1.1rem;
+    border-bottom: 1px solid var(--border-color);
+    padding-bottom: 8px;
+}
+
+.evidence-list,
+.character-list {
+    list-style: none;
+}
+
+.evidence-list li,
+.character-list li {
+    padding: 10px;
+    margin-bottom: 8px;
+    background: var(--bg-card);
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border-left: 3px solid transparent;
+}
+
+.evidence-list li:hover,
+.character-list li:hover {
+    background: rgba(74, 144, 217, 0.2);
+    border-left-color: var(--accent-blue);
+}
+
+.evidence-list li.empty,
+.character-list li.empty {
+    color: var(--text-secondary);
+    font-style: italic;
+    cursor: default;
+    background: transparent;
+    border-left: none;
+}
+
+.evidence-list li.empty:hover,
+.character-list li.empty:hover {
+    background: transparent;
+}
+
+/* Main Content */
+.main-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    background: var(--bg-panel);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.scene-container {
+    flex: 1;
+    padding: 30px;
+    overflow-y: auto;
+}
+
+.scene-image {
+    width: 100%;
+    height: 200px;
+    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+    border-radius: 8px;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--text-secondary);
+    font-style: italic;
+    position: relative;
+    overflow: hidden;
+}
+
+.scene-image::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='50' x='50' text-anchor='middle' fill='%23333' font-size='14'%3E[Scene Image]%3C/text%3E%3C/svg%3E") center/contain no-repeat;
+    opacity: 0.3;
+}
+
+.scene-text {
+    font-size: 1.1rem;
+    line-height: 1.8;
+    color: var(--text-primary);
+    white-space: pre-wrap;
+}
+
+.scene-text p {
+    margin-bottom: 1em;
+}
+
+/* Choices */
+.choices-container {
+    padding: 20px 30px;
+    background: var(--bg-card);
+    border-top: 1px solid var(--border-color);
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.choice-btn {
+    background: transparent;
+    border: 2px solid var(--accent-blue);
+    color: var(--text-primary);
+    padding: 15px 20px;
+    text-align: left;
+    cursor: pointer;
+    border-radius: 6px;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.choice-btn::before {
+    content: '> ';
+    color: var(--accent-blue);
+    font-weight: bold;
+}
+
+.choice-btn:hover {
+    background: var(--accent-blue);
+    transform: translateX(5px);
+}
+
+.choice-btn.investigate {
+    border-color: var(--accent-gold);
+}
+
+.choice-btn.investigate::before {
+    color: var(--accent-gold);
+}
+
+.choice-btn.investigate:hover {
+    background: var(--accent-gold);
+}
+
+.choice-btn.accuse {
+    border-color: var(--accent-red);
+}
+
+.choice-btn.accuse::before {
+    color: var(--accent-red);
+}
+
+.choice-btn.accuse:hover {
+    background: var(--accent-red);
+}
+
+/* Modal */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.8);
+    animation: fadeIn 0.3s ease;
+}
+
+.modal.active {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+.modal-content {
+    background: var(--bg-panel);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    width: 90%;
+    max-width: 700px;
+    max-height: 80vh;
+    overflow-y: auto;
+    position: relative;
+    animation: slideIn 0.3s ease;
+}
+
+@keyframes slideIn {
+    from {
+        transform: translateY(-50px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+.close {
+    position: absolute;
+    right: 15px;
+    top: 10px;
+    font-size: 28px;
+    font-weight: bold;
+    color: var(--text-secondary);
+    cursor: pointer;
+    transition: color 0.3s ease;
+}
+
+.close:hover {
+    color: var(--accent-red);
+}
+
+.modal-content h2 {
+    color: var(--accent-gold);
+    padding: 20px;
+    border-bottom: 1px solid var(--border-color);
+}
+
+/* Notebook Tabs */
+.notebook-tabs {
+    display: flex;
+    gap: 5px;
+    padding: 0 20px;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.tab-btn {
+    background: transparent;
+    border: none;
+    color: var(--text-secondary);
+    padding: 12px 20px;
+    cursor: pointer;
+    font-size: 0.95rem;
+    transition: all 0.3s ease;
+    border-bottom: 2px solid transparent;
+}
+
+.tab-btn:hover {
+    color: var(--text-primary);
+}
+
+.tab-btn.active {
+    color: var(--accent-blue);
+    border-bottom-color: var(--accent-blue);
+}
+
+.notebook-content {
+    padding: 20px;
+    min-height: 300px;
+}
+
+/* Character Detail */
+.character-profile {
+    padding: 20px;
+}
+
+.character-profile h3 {
+    color: var(--accent-gold);
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+}
+
+.character-profile .role {
+    color: var(--accent-blue);
+    font-style: italic;
+    margin-bottom: 15px;
+}
+
+.character-profile .description {
+    color: var(--text-secondary);
+    line-height: 1.7;
+    margin-bottom: 15px;
+}
+
+.character-profile .motive {
+    background: rgba(201, 79, 79, 0.1);
+    border-left: 3px solid var(--accent-red);
+    padding: 10px 15px;
+    margin-top: 15px;
+}
+
+.character-profile .motive strong {
+    color: var(--accent-red);
+}
+
+/* Clue Items */
+.clue-item {
+    background: var(--bg-card);
+    border-radius: 6px;
+    padding: 15px;
+    margin-bottom: 12px;
+    border-left: 3px solid var(--accent-gold);
+}
+
+.clue-item h4 {
+    color: var(--accent-gold);
+    margin-bottom: 8px;
+}
+
+.clue-item p {
+    color: var(--text-secondary);
+    font-size: 0.95rem;
+}
+
+/* Deduction Items */
+.deduction-item {
+    background: var(--bg-card);
+    border-radius: 6px;
+    padding: 15px;
+    margin-bottom: 12px;
+    border-left: 3px solid var(--accent-blue);
+}
+
+.deduction-item h4 {
+    color: var(--accent-blue);
+    margin-bottom: 8px;
+}
+
+.deduction-item p {
+    color: var(--text-secondary);
+    font-size: 0.95rem;
+}
+
+/* Scrollbar Styling */
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--bg-dark);
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--border-color);
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(--accent-blue);
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+    .game-container {
+        flex-direction: column;
+        height: auto;
+    }
+    
+    .sidebar {
+        width: 100%;
+        flex-direction: row;
+    }
+    
+    .evidence-panel,
+    .characters-panel {
+        flex: 1;
+    }
+    
+    .header-actions {
+        position: static;
+        transform: none;
+        justify-content: center;
+        margin-top: 15px;
+    }
+}
+
+@media (max-width: 768px) {
+    .game-header h1 {
+        font-size: 1.8rem;
+    }
+    
+    .sidebar {
+        flex-direction: column;
+    }
+    
+    .scene-container {
+        padding: 20px;
+    }
+    
+    .choices-container {
+        padding: 15px 20px;
+    }
+}
+
+/* Special Scene Styles */
+.scene-text .dialogue {
+    color: #a8d5ff;
+    font-style: italic;
+    margin-left: 20px;
+    border-left: 2px solid var(--accent-blue);
+    padding-left: 15px;
+    margin-bottom: 1em;
+}
+
+.scene-text .thought {
+    color: #b8b8c8;
+    font-style: italic;
+    opacity: 0.8;
+}
+
+.scene-text .evidence-found {
+    background: rgba(212, 168, 83, 0.1);
+    border: 1px solid var(--accent-gold);
+    border-radius: 6px;
+    padding: 15px;
+    margin: 15px 0;
+    animation: glow 2s ease-in-out infinite alternate;
+}
+
+@keyframes glow {
+    from {
+        box-shadow: 0 0 5px rgba(212, 168, 83, 0.3);
+    }
+    to {
+        box-shadow: 0 0 20px rgba(212, 168, 83, 0.5);
+    }
+}
+
+.scene-text .evidence-found strong {
+    color: var(--accent-gold);
+}
+
+/* Ending Styles */
+.ending-good {
+    color: #7ec699;
+}
+
+.ending-bad {
+    color: var(--accent-red);
+}
+
+.ending-neutral {
+    color: var(--accent-gold);
+}
